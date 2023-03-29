@@ -1,23 +1,11 @@
-export default function NavBar({ setPokemonIndex, pokemonIndex, pokemonList }) {
-  function countMore() {
-    setPokemonIndex(pokemonIndex + 1);
-  }
-
-  function countLess() {
-    setPokemonIndex(pokemonIndex - 1);
-  }
+export default function NavBar({ pokemonList, changePokemonIndex }) {
   return (
     <div>
-      {pokemonIndex > 0 ? (
-        <button onClick={countLess}>Précédent</button>
-      ) : (
-        <div></div>
-      )}
-      {pokemonIndex < pokemonList.length - 1 ? (
-        <button onClick={countMore}>Suivant</button>
-      ) : (
-        <div></div>
-      )}
+      {pokemonList.map((poke, index) => (
+        <button key={poke.name} onClick={() => changePokemonIndex(index)}>
+          {poke.name}
+        </button>
+      ))}
     </div>
   );
 }
